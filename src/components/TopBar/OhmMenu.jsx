@@ -6,17 +6,17 @@ import { Link, SvgIcon, Popper, Button, Paper, Typography, Divider, Box, Fade, S
 import { ReactComponent as InfoIcon } from "../../assets/icons/info-fill.svg";
 import { ReactComponent as ArrowUpIcon } from "../../assets/icons/arrow-up.svg";
 import "./ohmmenu.scss";
-import { dai, frax } from "src/helpers/AllBonds";
+import { usdc, usdt } from "src/helpers/AllBonds";
 import { useWeb3Context } from "../../hooks/web3Context";
 
-import OhmImg from "src/assets/tokens/token_OHM.svg";
-import SOhmImg from "src/assets/tokens/token_sOHM.svg";
+import OhmImg from "src/assets/tokens/token_SGOD.svg";
+import SOhmImg from "src/assets/tokens/token_sSGOD.svg";
 
 const addTokenToWallet = (tokenSymbol, tokenAddress) => async () => {
   if (window.ethereum) {
     const host = window.location.origin;
-    // NOTE (appleseed): 33T token defaults to sOHM logo since we don't have a 33T logo yet
-    const tokenPath = tokenSymbol === "OHM" ? OhmImg : SOhmImg;
+    // NOTE (appleseed): 33T token defaults to sSGOD logo since we don't have a 33T logo yet
+    const tokenPath = tokenSymbol === "SGOD" ? OhmImg : SOhmImg;
     const imageURL = `${host}/${tokenPath}`;
 
     try {
@@ -45,8 +45,8 @@ function OhmMenu() {
 
   const networkID = chainID;
 
-  const SOHM_ADDRESS = addresses[networkID].SOHM_ADDRESS;
-  const OHM_ADDRESS = addresses[networkID].OHM_ADDRESS;
+  const SSGOD_ADDRESS = addresses[networkID].SSGOD_ADDRESS;
+  const SGOD_ADDRESS = addresses[networkID].SGOD_ADDRESS;
   const PT_TOKEN_ADDRESS = addresses[networkID].PT_TOKEN_ADDRESS;
 
   const handleClick = event => {
@@ -54,29 +54,36 @@ function OhmMenu() {
   };
 
   const open = Boolean(anchorEl);
-  const id = "ohm-popper";
-  const daiAddress = dai.getAddressForReserve(networkID);
-  const fraxAddress = frax.getAddressForReserve(networkID);
+  const id = "sgod-popper";
+  const daiAddress = usdc.getAddressForReserve(networkID);
+  const fraxAddress = usdt.getAddressForReserve(networkID);
   return (
     <Box
       component="div"
       onMouseEnter={e => handleClick(e)}
       onMouseLeave={e => handleClick(e)}
-      id="ohm-menu-button-hover"
+      id="sgod-menu-button-hover"
     >
-      <Button id="ohm-menu-button" size="large" variant="contained" color="secondary" title="OHM" aria-describedby={id}>
+      <Button
+        id="sgod-menu-button"
+        size="large"
+        variant="contained"
+        color="secondary"
+        title="SGOD"
+        aria-describedby={id}
+      >
         <SvgIcon component={InfoIcon} color="primary" />
-        <Typography>OHM</Typography>
+        <Typography>SGOD</Typography>
       </Button>
 
       <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-start" transition>
         {({ TransitionProps }) => {
           return (
             <Fade {...TransitionProps} timeout={100}>
-              <Paper className="ohm-menu" elevation={1}>
+              <Paper className="sgod-menu" elevation={1}>
                 <Box component="div" className="buy-tokens">
                   <Link
-                    href={`https://app.sushi.com/swap?inputCurrency=${daiAddress}&outputCurrency=${OHM_ADDRESS}`}
+                    href={`https://app.sushi.com/swap?inputCurrency=${daiAddress}&outputCurrency=${SGOD_ADDRESS}`}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -88,7 +95,7 @@ function OhmMenu() {
                   </Link>
 
                   <Link
-                    href={`https://app.uniswap.org/#/swap?inputCurrency=${fraxAddress}&outputCurrency=${OHM_ADDRESS}`}
+                    href={`https://app.uniswap.org/#/swap?inputCurrency=${fraxAddress}&outputCurrency=${SGOD_ADDRESS}`}
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -108,17 +115,17 @@ function OhmMenu() {
                       size="large"
                       variant="contained"
                       color="secondary"
-                      onClick={addTokenToWallet("OHM", OHM_ADDRESS)}
+                      onClick={addTokenToWallet("SGOD", SGOD_ADDRESS)}
                     >
-                      <Typography>OHM</Typography>
+                      <Typography>SGOD</Typography>
                     </Button>
                     <Button
                       variant="contained"
                       size="large"
                       color="secondary"
-                      onClick={addTokenToWallet("sOHM", SOHM_ADDRESS)}
+                      onClick={addTokenToWallet("sSGOD", SSGOD_ADDRESS)}
                     >
-                      <Typography>sOHM</Typography>
+                      <Typography>sSGOD</Typography>
                     </Button>
                     <Button
                       variant="contained"

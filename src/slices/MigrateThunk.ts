@@ -2,8 +2,8 @@ import { Contract, ethers } from "ethers";
 import { addresses } from "../constants";
 import { abi as ierc20Abi } from "../abi/IERC20.json";
 import { abi as OlympusStaking } from "../abi/OlympusStaking.json";
-import { abi as sOHM } from "../abi/sOHM.json";
-import { abi as sOHMv2 } from "../abi/sOhmv2.json";
+import { abi as sSGOD } from "../abi/sSGOD.json";
+import { abi as sSGODv2 } from "../abi/sOhmv2.json";
 import { abi as StakingHelper } from "../abi/StakingHelper.json";
 import { clearPendingTxn, fetchPendingTxns, getStakingTypeText } from "./PendingTxnsSlice";
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -13,7 +13,7 @@ import { JsonRpcProvider, StaticJsonRpcProvider } from "@ethersproject/providers
 import { IJsonRPCError } from "./interfaces";
 
 export const ACTIONS = { STAKE: "STAKE", UNSTAKE: "UNSTAKE" };
-export const TYPES = { OLD: "OLD_SOHM", NEW: "NEW_OHM" };
+export const TYPES = { OLD: "OLD_SSGOD", NEW: "NEW_SGOD" };
 
 interface ICalculateAPY {
   sohmContract: Contract;
@@ -48,8 +48,8 @@ export const getApproval = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    const ohmContract = new ethers.Contract(addresses[networkID].OHM_ADDRESS as string, ierc20Abi, signer);
-    const oldSohmContract = new ethers.Contract(addresses[networkID].OLD_SOHM_ADDRESS as string, ierc20Abi, signer);
+    const ohmContract = new ethers.Contract(addresses[networkID].SGOD_ADDRESS as string, ierc20Abi, signer);
+    const oldSohmContract = new ethers.Contract(addresses[networkID].OLD_SSGOD_ADDRESS as string, ierc20Abi, signer);
 
     let approveTx;
     try {
@@ -122,7 +122,7 @@ export const changeStake = createAsyncThunk(
       if (action === ACTIONS.STAKE) {
         stakeTx = await staking.stake(ethers.utils.parseUnits(value, "gwei"));
       } else if (action === ACTIONS.UNSTAKE) {
-        stakeTx = await oldStaking.unstakeOHM(ethers.utils.parseUnits(value, "gwei"));
+        stakeTx = await oldStaking.unstakeSGOD(ethers.utils.parseUnits(value, "gwei"));
       }
       const pendingTxnType = action === ACTIONS.STAKE ? "migrate_staking" : "migrate_unstaking";
       fetchPendingTxns({ txnHash: stakeTx.hash, text: getStakingTypeText(action), type: pendingTxnType });
@@ -143,16 +143,16 @@ export const changeStake = createAsyncThunk(
       }
     }
 
-    const ohmContract = new ethers.Contract(addresses[networkID].OHM_ADDRESS as string, ierc20Abi, provider);
+    const ohmContract = new ethers.Contract(addresses[networkID].SGOD_ADDRESS as string, ierc20Abi, provider);
     const ohmBalance = await ohmContract.balanceOf(address);
-    const sohmContract = new ethers.Contract(addresses[networkID].SOHM_ADDRESS as string, sOHMv2, provider);
+    const sohmContract = new ethers.Contract(addresses[networkID].SSGOD_ADDRESS as string, sSGODv2, provider);
     const sohmBalance = await sohmContract.balanceOf(address);
-    const oldSohmContract = new ethers.Contract(addresses[networkID].OLD_SOHM_ADDRESS as string, sOHM, provider);
+    const oldSohmContract = new ethers.Contract(addresses[networkID].OLD_SSGOD_ADDRESS as string, sSGOD, provider);
     const oldsohmBalance = await oldSohmContract.balanceOf(address);
 
     return {
       balances: {
-        ohm: ethers.utils.formatUnits(ohmBalance, "gwei"),
+        sgod: ethers.utils.formatUnits(ohmBalance, "gwei"),
         sohm: ethers.utils.formatUnits(sohmBalance, "gwei"),
         oldsohm: ethers.utils.formatUnits(oldsohmBalance, "gwei"),
       },

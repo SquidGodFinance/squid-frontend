@@ -1,5 +1,5 @@
 import { Backdrop, Container, SvgIcon } from "@material-ui/core";
-import { ReactComponent as OlympusIcon } from "../../assets/Olympus Logo.svg";
+import { ReactComponent as OlympusIcon } from "../../assets/Squid God Logo.svg";
 import "./loading.scss";
 
 function LoadingSplash() {

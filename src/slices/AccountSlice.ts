@@ -1,10 +1,10 @@
 import { ethers } from "ethers";
 import { addresses } from "../constants";
 import { abi as ierc20Abi } from "../abi/IERC20.json";
-import { abi as sOHM } from "../abi/sOHM.json";
-import { abi as sOHMv2 } from "../abi/sOhmv2.json";
+import { abi as sSGOD } from "../abi/sSGOD.json";
+import { abi as sSGODv2 } from "../abi/sOhmv2.json";
 import { abi as fuseProxy } from "../abi/FuseProxy.json";
-import { abi as wsOHM } from "../abi/wsOHM.json";
+import { abi as wsSGOD } from "../abi/wsSGOD.json";
 
 import { setAll } from "../helpers";
 
@@ -22,9 +22,9 @@ interface IGetBalances {
 export const getBalances = createAsyncThunk(
   "account/getBalances",
   async ({ address, networkID, provider }: IGetBalances) => {
-    const ohmContract = new ethers.Contract(addresses[networkID].OHM_ADDRESS as string, ierc20Abi, provider);
+    const ohmContract = new ethers.Contract(addresses[networkID].SGOD_ADDRESS as string, ierc20Abi, provider);
     const ohmBalance = await ohmContract.balanceOf(address);
-    const sohmContract = new ethers.Contract(addresses[networkID].SOHM_ADDRESS as string, ierc20Abi, provider);
+    const sohmContract = new ethers.Contract(addresses[networkID].SSGOD_ADDRESS as string, ierc20Abi, provider);
     const sohmBalance = await sohmContract.balanceOf(address);
     let poolBalance = 0;
     const poolTokenContract = new ethers.Contract(addresses[networkID].PT_TOKEN_ADDRESS as string, ierc20Abi, provider);
@@ -32,7 +32,7 @@ export const getBalances = createAsyncThunk(
 
     return {
       balances: {
-        ohm: ethers.utils.formatUnits(ohmBalance, "gwei"),
+        sgod: ethers.utils.formatUnits(ohmBalance, "gwei"),
         sohm: ethers.utils.formatUnits(sohmBalance, "gwei"),
         pool: ethers.utils.formatUnits(poolBalance, "gwei"),
       },
@@ -48,8 +48,8 @@ interface ILoadAccountDetails {
 
 interface IUserAccountDetails {
   balances: {
-    dai: string;
-    ohm: string;
+    usdc: string;
+    sgod: string;
     sohm: string;
     oldsohm: string;
   };
@@ -79,22 +79,22 @@ export const loadAccountDetails = createAsyncThunk(
     let pendingRewards = 0;
     let lpBondAllowance = 0;
     let daiBondAllowance = 0;
-    let aOHMAbleToClaim = 0;
+    let aSGODAbleToClaim = 0;
     let unstakeAllowanceSohm;
     let poolBalance = 0;
     let poolAllowance = 0;
 
-    const daiContract = new ethers.Contract(addresses[networkID].DAI_ADDRESS as string, ierc20Abi, provider);
+    const daiContract = new ethers.Contract(addresses[networkID].USDC_ADDRESS as string, ierc20Abi, provider);
     const daiBalance = await daiContract.balanceOf(address);
 
-    if (addresses[networkID].OHM_ADDRESS) {
-      const ohmContract = new ethers.Contract(addresses[networkID].OHM_ADDRESS as string, ierc20Abi, provider);
+    if (addresses[networkID].SGOD_ADDRESS) {
+      const ohmContract = new ethers.Contract(addresses[networkID].SGOD_ADDRESS as string, ierc20Abi, provider);
       ohmBalance = await ohmContract.balanceOf(address);
       stakeAllowance = await ohmContract.allowance(address, addresses[networkID].STAKING_HELPER_ADDRESS);
     }
 
-    if (addresses[networkID].SOHM_ADDRESS) {
-      const sohmContract = new ethers.Contract(addresses[networkID].SOHM_ADDRESS as string, sOHMv2, provider);
+    if (addresses[networkID].SSGOD_ADDRESS) {
+      const sohmContract = new ethers.Contract(addresses[networkID].SSGOD_ADDRESS as string, sSGODv2, provider);
       sohmBalance = await sohmContract.balanceOf(address);
       unstakeAllowance = await sohmContract.allowance(address, addresses[networkID].STAKING_ADDRESS);
       poolAllowance = await sohmContract.allowance(address, addresses[networkID].PT_PRIZE_POOL_ADDRESS);
@@ -105,7 +105,7 @@ export const loadAccountDetails = createAsyncThunk(
       poolBalance = await poolTokenContract.balanceOf(address);
     }
 
-    for (const fuseAddressKey of ["FUSE_6_SOHM", "FUSE_18_SOHM"]) {
+    for (const fuseAddressKey of ["FUSE_6_SSGOD", "FUSE_18_SSGOD"]) {
       if (addresses[networkID][fuseAddressKey]) {
         const fsohmContract = await new ethers.Contract(
           addresses[networkID][fuseAddressKey] as string,
@@ -119,22 +119,22 @@ export const loadAccountDetails = createAsyncThunk(
       }
     }
 
-    if (addresses[networkID].WSOHM_ADDRESS) {
-      const wsohmContract = new ethers.Contract(addresses[networkID].WSOHM_ADDRESS as string, wsOHM, provider);
+    if (addresses[networkID].WSSGOD_ADDRESS) {
+      const wsohmContract = new ethers.Contract(addresses[networkID].WSSGOD_ADDRESS as string, wsSGOD, provider);
       const balance = await wsohmContract.balanceOf(address);
-      wsohmBalance = await wsohmContract.wOHMTosOHM(balance);
+      wsohmBalance = await wsohmContract.wSGODTosSGOD(balance);
     }
 
-    if (addresses[networkID].OLD_SOHM_ADDRESS) {
-      const oldsohmContract = new ethers.Contract(addresses[networkID].OLD_SOHM_ADDRESS as string, sOHM, provider);
+    if (addresses[networkID].OLD_SSGOD_ADDRESS) {
+      const oldsohmContract = new ethers.Contract(addresses[networkID].OLD_SSGOD_ADDRESS as string, sSGOD, provider);
       oldsohmBalance = await oldsohmContract.balanceOf(address);
       unstakeAllowanceSohm = await oldsohmContract.allowance(address, addresses[networkID].OLD_STAKING_ADDRESS);
     }
 
     return {
       balances: {
-        dai: ethers.utils.formatEther(daiBalance),
-        ohm: ethers.utils.formatUnits(ohmBalance, "gwei"),
+        usdc: ethers.utils.formatEther(daiBalance),
+        sgod: ethers.utils.formatUnits(ohmBalance, "gwei"),
         sohm: ethers.utils.formatUnits(sohmBalance, "gwei"),
         fsohm: fsohmBalance,
         wsohm: ethers.utils.formatUnits(wsohmBalance, "gwei"),
@@ -223,9 +223,9 @@ export const calculateUserBondDetails = createAsyncThunk(
 interface IAccountSlice {
   bonds: { [key: string]: IUserBondDetails };
   balances: {
-    ohm: string;
+    sgod: string;
     sohm: string;
-    dai: string;
+    usdc: string;
     oldsohm: string;
   };
   loading: boolean;
@@ -233,7 +233,7 @@ interface IAccountSlice {
 const initialState: IAccountSlice = {
   loading: false,
   bonds: {},
-  balances: { ohm: "", sohm: "", dai: "", oldsohm: "" },
+  balances: { sgod: "", sohm: "", usdc: "", oldsohm: "" },
 };
 
 const accountSlice = createSlice({

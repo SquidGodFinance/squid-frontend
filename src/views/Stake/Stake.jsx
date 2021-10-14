@@ -57,7 +57,7 @@ function Stake() {
     return state.app.fiveDayRate;
   });
   const ohmBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.ohm;
+    return state.account.balances && state.account.balances.sgod;
   });
   const oldSohmBalance = useSelector(state => {
     return state.account.balances && state.account.balances.oldsohm;
@@ -115,7 +115,7 @@ function Stake() {
 
   const hasAllowance = useCallback(
     token => {
-      if (token === "ohm") return stakeAllowance > 0;
+      if (token === "sgod") return stakeAllowance > 0;
       if (token === "sohm") return unstakeAllowance > 0;
       return 0;
     },
@@ -148,7 +148,7 @@ function Stake() {
   return (
     <div id="stake-view">
       <Zoom in={true} onEntered={() => setZoomed(true)}>
-        <Paper className={`ohm-card`}>
+        <Paper className={`sgod-card`}>
           <Grid container direction="column" spacing={2}>
             <Grid item>
               <div className="card-header">
@@ -164,7 +164,7 @@ function Stake() {
                     target="_blank"
                   >
                     <NewReleases viewBox="0 0 24 24" />
-                    <Typography>Migrate sOHM!</Typography>
+                    <Typography>Migrate sSGOD!</Typography>
                   </Link>
                 )}
               </div>
@@ -214,7 +214,7 @@ function Stake() {
                         Current Index
                       </Typography>
                       <Typography variant="h4">
-                        {currentIndex ? <>{trim(currentIndex, 1)} OHM</> : <Skeleton width="150px" />}
+                        {currentIndex ? <>{trim(currentIndex, 1)} SGOD</> : <Skeleton width="150px" />}
                       </Typography>
                     </div>
                   </Grid>
@@ -228,7 +228,7 @@ function Stake() {
                   <div className="wallet-menu" id="wallet-menu">
                     {modalButton}
                   </div>
-                  <Typography variant="h6">Connect your wallet to stake OHM</Typography>
+                  <Typography variant="h6">Connect your wallet to stake SGOD</Typography>
                 </div>
               ) : (
                 <>
@@ -247,7 +247,7 @@ function Stake() {
                       <Tab label="Unstake" {...a11yProps(1)} />
                     </Tabs>
                     <Box className="help-text">
-                      {address && ((!hasAllowance("ohm") && view === 0) || (!hasAllowance("sohm") && view === 1)) && (
+                      {address && ((!hasAllowance("sgod") && view === 0) || (!hasAllowance("sohm") && view === 1)) && (
                         <Typography variant="body2" className="stake-note" color="textSecondary">
                           Note: The "Approve" transaction is only needed when staking/unstaking for the first time;
                           subsequent staking/unstaking only requires you to perform the "Stake" or "Unstake"
@@ -256,7 +256,7 @@ function Stake() {
                       )}
                     </Box>
                     <Box className="stake-action-row " display="flex" alignItems="center">
-                      <FormControl className="ohm-input" variant="outlined" color="primary">
+                      <FormControl className="sgod-input" variant="outlined" color="primary">
                         <InputLabel htmlFor="amount-input"></InputLabel>
                         <OutlinedInput
                           id="amount-input"
@@ -277,7 +277,7 @@ function Stake() {
                       </FormControl>
 
                       <TabPanel value={view} index={0} className="stake-tab-panel">
-                        {address && hasAllowance("ohm") ? (
+                        {address && hasAllowance("sgod") ? (
                           <Button
                             className="stake-button"
                             variant="contained"
@@ -287,7 +287,7 @@ function Stake() {
                               onChangeStake("stake");
                             }}
                           >
-                            {txnButtonText(pendingTransactions, "staking", "Stake OHM")}
+                            {txnButtonText(pendingTransactions, "staking", "Stake SGOD")}
                           </Button>
                         ) : (
                           <Button
@@ -296,7 +296,7 @@ function Stake() {
                             color="primary"
                             disabled={isPendingTxn(pendingTransactions, "approve_staking")}
                             onClick={() => {
-                              onSeekApproval("ohm");
+                              onSeekApproval("sgod");
                             }}
                           >
                             {txnButtonText(pendingTransactions, "approve_staking", "Approve")}
@@ -315,7 +315,7 @@ function Stake() {
                               onChangeStake("unstake");
                             }}
                           >
-                            {txnButtonText(pendingTransactions, "unstaking", "Unstake OHM")}
+                            {txnButtonText(pendingTransactions, "unstaking", "Unstake SGOD")}
                           </Button>
                         ) : (
                           <Button
@@ -338,21 +338,21 @@ function Stake() {
                     <div className="data-row">
                       <Typography variant="body1">Your Balance</Typography>
                       <Typography variant="body1">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{trim(ohmBalance, 4)} OHM</>}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{trim(ohmBalance, 4)} SGOD</>}
                       </Typography>
                     </div>
 
                     <div className="data-row">
                       <Typography variant="body1">Your Staked Balance</Typography>
                       <Typography variant="body1">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{trimmedBalance} sOHM</>}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{trimmedBalance} sSGOD</>}
                       </Typography>
                     </div>
 
                     <div className="data-row">
                       <Typography variant="body1">Next Reward Amount</Typography>
                       <Typography variant="body1">
-                        {isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} sOHM</>}
+                        {isAppLoading ? <Skeleton width="80px" /> : <>{nextRewardValue} sSGOD</>}
                       </Typography>
                     </div>
 
@@ -377,7 +377,7 @@ function Stake() {
         </Paper>
       </Zoom>
 
-      <ExternalStakePool />
+      {/* <ExternalStakePool /> */}
     </div>
   );
 }

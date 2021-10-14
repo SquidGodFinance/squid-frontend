@@ -77,7 +77,7 @@ function TreasuryDashboard() {
     <div id="treasury-dashboard-view" className={`${smallerScreen && "smaller"} ${verySmallScreen && "very-small"}`}>
       <Container style={{ paddingLeft: 0, paddingRight: 0 }}>
         <Box className={`hero-metrics`}>
-          <Paper className="ohm-card">
+          <Paper className="sgod-card">
             <Box display="flex" justifyContent="space-evenly">
               <Box className="metric market">
                 <Typography variant="h6" color="textSecondary">
@@ -90,7 +90,7 @@ function TreasuryDashboard() {
               </Box>
               <Box className="metric price">
                 <Typography variant="h6" color="textSecondary">
-                  OHM Price
+                  SGOD Price
                 </Typography>
                 <Typography variant="h4">
                   {/* appleseed-fix */}
@@ -116,7 +116,7 @@ function TreasuryDashboard() {
                   Current Index
                 </Typography>
                 <Typography variant="h4">
-                  {currentIndex ? trim(currentIndex, 2) + " sOHM" : <Skeleton type="text" />}
+                  {currentIndex ? trim(currentIndex, 2) + " sSGOD" : <Skeleton type="text" />}
                 </Typography>
               </Box>
             </Box>
@@ -126,7 +126,7 @@ function TreasuryDashboard() {
         <Zoom in={true}>
           <Grid container spacing={2} className="data-grid">
             <Grid item lg={6} md={6} sm={12} xs={12}>
-              <Paper className="ohm-card ohm-chart-card">
+              <Paper className="sgod-card sgod-chart-card">
                 <Chart
                   type="area"
                   data={data}
@@ -144,7 +144,7 @@ function TreasuryDashboard() {
             </Grid>
 
             <Grid item lg={6} md={6} sm={12} xs={12}>
-              <Paper className="ohm-card ohm-chart-card">
+              <Paper className="sgod-card sgod-chart-card">
                 <Chart
                   type="stack"
                   data={data}
@@ -172,7 +172,7 @@ function TreasuryDashboard() {
             </Grid>
 
             <Grid item lg={6} md={6} sm={12} xs={12}>
-              <Paper className="ohm-card ohm-chart-card">
+              <Paper className="sgod-card sgod-chart-card">
                 <Chart
                   type="stack"
                   data={data}
@@ -196,13 +196,13 @@ function TreasuryDashboard() {
             </Grid>
 
             <Grid item lg={6} md={6} sm={12} xs={12}>
-              <Paper className="ohm-card">
+              <Paper className="sgod-card">
                 <Chart
                   type="area"
                   data={data}
                   dataKey={["treasuryOhmDaiPOL"]}
                   stopColor={[["rgba(128, 204, 131, 1)", "rgba(128, 204, 131, 0)"]]}
-                  headerText="Protocol Owned Liquidity OHM-DAI"
+                  headerText="Protocol Owned Liquidity SGOD-USDC"
                   headerSubText={`${data && trim(data[0].treasuryOhmDaiPOL, 2)}% `}
                   dataFormat="percent"
                   bulletpointColors={bulletpoints.pol}
@@ -216,7 +216,7 @@ function TreasuryDashboard() {
             </Grid>
             {/*  Temporarily removed until correct data is in the graph */}
             {/* <Grid item lg={6} md={12} sm={12} xs={12}>
-              <Paper className="ohm-card">
+              <Paper className="sgod-card">
                 <Chart
                   type="bar"
                   data={data}
@@ -234,13 +234,13 @@ function TreasuryDashboard() {
             </Grid> */}
 
             <Grid item lg={6} md={6} sm={12} xs={12}>
-              <Paper className="ohm-card">
+              <Paper className="sgod-card">
                 <Chart
                   type="area"
                   data={staked}
                   dataKey={["staked"]}
                   stopColor={[["#55EBC7", "#47ACEB"]]}
-                  headerText="OHM Staked"
+                  headerText="SGOD Staked"
                   dataFormat="percent"
                   headerSubText={`${staked && trim(staked[0].staked, 2)}% `}
                   isStaked={true}
@@ -252,7 +252,7 @@ function TreasuryDashboard() {
             </Grid>
 
             <Grid item lg={6} md={6} sm={12} xs={12}>
-              <Paper className="ohm-card">
+              <Paper className="sgod-card">
                 <Chart
                   type="line"
                   scale="log"
@@ -273,7 +273,7 @@ function TreasuryDashboard() {
             </Grid>
 
             <Grid item lg={6} md={6} sm={12} xs={12}>
-              <Paper className="ohm-card">
+              <Paper className="sgod-card">
                 <Chart
                   type="line"
                   data={runway}

@@ -1,11 +1,11 @@
 import { StableBond, LPBond, NetworkID, CustomBond } from "src/lib/Bond";
 import { addresses } from "src/constants";
 
-import { ReactComponent as DaiImg } from "src/assets/tokens/DAI.svg";
-import { ReactComponent as OhmDaiImg } from "src/assets/tokens/OHM-DAI.svg";
-import { ReactComponent as FraxImg } from "src/assets/tokens/FRAX.svg";
-import { ReactComponent as OhmFraxImg } from "src/assets/tokens/OHM-FRAX.svg";
-import { ReactComponent as OhmLusdImg } from "src/assets/tokens/OHM-LUSD.svg";
+import { ReactComponent as DaiImg } from "src/assets/tokens/USDC.svg";
+import { ReactComponent as OhmDaiImg } from "src/assets/tokens/SGOD-USDC.svg";
+import { ReactComponent as FraxImg } from "src/assets/tokens/USDT.svg";
+import { ReactComponent as OhmFraxImg } from "src/assets/tokens/SGOD-USDT.svg";
+import { ReactComponent as OhmLusdImg } from "src/assets/tokens/SGOD-LUSD.svg";
 import { ReactComponent as wETHImg } from "src/assets/tokens/wETH.svg";
 import { ReactComponent as LusdImg } from "src/assets/tokens/LUSD.svg";
 
@@ -22,10 +22,10 @@ import { abi as EthBondContract } from "src/abi/bonds/EthContract.json";
 
 // TODO(zx): Further modularize by splitting up reserveAssets into vendor token definitions
 //   and include that in the definition of a bond
-export const dai = new StableBond({
-  name: "dai",
-  displayName: "DAI",
-  bondToken: "DAI",
+export const usdc = new StableBond({
+  name: "usdc",
+  displayName: "USDC",
+  bondToken: "USDC",
   bondIconSvg: DaiImg,
   bondContractABI: DaiBondContract,
   networkAddrs: {
@@ -40,10 +40,10 @@ export const dai = new StableBond({
   },
 });
 
-export const frax = new StableBond({
-  name: "frax",
-  displayName: "FRAX",
-  bondToken: "FRAX",
+export const usdt = new StableBond({
+  name: "usdt",
+  displayName: "USDT",
+  bondToken: "USDT",
   bondIconSvg: FraxImg,
   bondContractABI: FraxBondContract,
   networkAddrs: {
@@ -103,10 +103,10 @@ export const eth = new CustomBond({
   },
 });
 
-export const ohm_dai = new LPBond({
-  name: "ohm_dai_lp",
-  displayName: "OHM-DAI LP",
-  bondToken: "DAI",
+export const sgod_usdc = new LPBond({
+  name: "sgod_usdc_lp",
+  displayName: "SGOD-USDC LP",
+  bondToken: "USDC",
   bondIconSvg: OhmDaiImg,
   bondContractABI: BondOhmDaiContract,
   reserveContract: ReserveOhmDaiContract,
@@ -124,10 +124,10 @@ export const ohm_dai = new LPBond({
     "https://app.sushi.com/add/0x383518188c0c6d7730d91b2c03a03c837814a899/0x6b175474e89094c44da98b954eedeac495271d0f",
 });
 
-export const ohm_frax = new LPBond({
-  name: "ohm_frax_lp",
-  displayName: "OHM-FRAX LP",
-  bondToken: "FRAX",
+export const sgod_usdt = new LPBond({
+  name: "sgod_usdt_lp",
+  displayName: "SGOD-USDT LP",
+  bondToken: "USDT",
   bondIconSvg: OhmFraxImg,
   bondContractABI: FraxOhmBondContract,
   reserveContract: ReserveOhmFraxContract,
@@ -147,7 +147,7 @@ export const ohm_frax = new LPBond({
 
 export const ohm_lusd = new LPBond({
   name: "ohm_lusd_lp",
-  displayName: "OHM-LUSD LP",
+  displayName: "SGOD-LUSD LP",
   bondToken: "LUSD",
   bondIconSvg: OhmLusdImg,
   bondContractABI: BondOhmLusdContract,
@@ -158,7 +158,7 @@ export const ohm_lusd = new LPBond({
       reserveAddress: "0xfDf12D1F85b5082877A6E070524f50F6c84FAa6b",
     },
     [NetworkID.Testnet]: {
-      // NOTE (appleseed-lusd): using ohm-dai rinkeby contracts
+      // NOTE (appleseed-lusd): using sgod-usdc rinkeby contracts
       bondAddress: "0xcF449dA417cC36009a1C6FbA78918c31594B9377",
       reserveAddress: "0x8D5a22Fb6A1840da602E56D1a260E56770e0bCE2",
     },
@@ -171,7 +171,7 @@ export const ohm_lusd = new LPBond({
 // Is it a stableCoin bond? use `new StableBond`
 // Is it an LP Bond? use `new LPBond`
 // Add new bonds to this array!!
-export const allBonds = [dai, frax, eth, ohm_dai, ohm_frax, lusd, ohm_lusd];
+export const allBonds = [usdc, usdt, sgod_usdc, sgod_usdt];
 export const allBondsMap = allBonds.reduce((prevVal, bond) => {
   return { ...prevVal, [bond.name]: bond };
 }, {});

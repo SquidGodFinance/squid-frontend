@@ -15,7 +15,7 @@
     display: none !important;
   }
 
-  .ohm-card {
+  .sgod-card {
     max-width: unset !important;
     width: 100%;
     margin: auto;
@@ -23,7 +23,7 @@
     .card-header {
       margin-bottom: 1rem;
     }
-    &.ohm-chart-card {
+    &.sgod-chart-card {
       .chart-card-header {
         padding: 0px 20px !important;
         min-width: 300px;
@@ -35,7 +35,7 @@
     width: 100%;
     margin-bottom: 23px;
     text-align: center;
-    .ohm-card {
+    .sgod-card {
       max-width: unset !important;
       flex-direction: row;
       justify-content: space-evenly;
@@ -55,10 +55,10 @@
 }
 
 .smaller {
-  .ohm-card {
+  .sgod-card {
     width: 97%;
   }
-  .hero-metrics .ohm-card {
+  .hero-metrics .sgod-card {
     > .MuiBox-root {
       flex-wrap: wrap;
     }
@@ -86,7 +86,7 @@
 }
 
 .very-small {
-  .hero-metrics .ohm-card {
+  .hero-metrics .sgod-card {
     > .MuiBox-root {
       flex-direction: column;
       justify-content: center;

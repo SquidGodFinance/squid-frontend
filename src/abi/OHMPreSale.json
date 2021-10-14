@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
-  "contractName": "OHMPreSale",
-  "sourceName": "contracts/sale/olympus/presale/OHMPresale.sol",
+  "contractName": "SGODPreSale",
+  "sourceName": "contracts/sale/olympus/presale/SGODPresale.sol",
   "abi": [
     {
       "inputs": [
@@ -35,7 +35,7 @@
     },
     {
       "inputs": [],
-      "name": "DAI",
+      "name": "USDC",
       "outputs": [
         {
           "internalType": "address",
@@ -48,7 +48,7 @@
     },
     {
       "inputs": [],
-      "name": "aOHM",
+      "name": "aSGOD",
       "outputs": [
         {
           "internalType": "address",
@@ -126,7 +126,7 @@
         },
         {
           "internalType": "address",
-          "name": "_aOHM",
+          "name": "_aSGOD",
           "type": "address"
         },
         {
@@ -168,11 +168,11 @@
       "inputs": [
         {
           "internalType": "uint256",
-          "name": "_amountDAI",
+          "name": "_amountUSDC",
           "type": "uint256"
         }
       ],
-      "name": "purchaseaOHM",
+      "name": "purchaseaSGOD",
       "outputs": [
         {
           "internalType": "bool",
@@ -220,11 +220,11 @@
       "inputs": [
         {
           "internalType": "address",
-          "name": "_sendaOHMTo",
+          "name": "_sendaSGODTo",
           "type": "address"
         }
       ],
-      "name": "sendRemainingaOHM",
+      "name": "sendRemainingaSGOD",
       "outputs": [
         {
           "internalType": "bool",

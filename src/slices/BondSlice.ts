@@ -121,7 +121,7 @@ export const calcBondDetails = createAsyncThunk(
         bondQuote = bondQuote / Math.pow(10, 9);
       }
     } else {
-      // RFV = DAI
+      // RFV = USDC
       bondQuote = await bondContract.payoutFor(amountInWei);
 
       if (!amountInWei.isZero() && bondQuote < 100000000000000) {
@@ -138,7 +138,7 @@ export const calcBondDetails = createAsyncThunk(
       const errorString =
         "You're trying to bond more than the maximum payout available! The maximum bond payout is " +
         (maxBondPrice / Math.pow(10, 9)).toFixed(2).toString() +
-        " OHM.";
+        " SGOD.";
       dispatch(error(errorString));
     }
 

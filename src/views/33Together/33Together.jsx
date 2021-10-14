@@ -48,7 +48,7 @@ const PoolTogether = () => {
   const [totalSponsorship, setTotalSponsorship] = useState(0);
   const [yourOdds, setYourOdds] = useState(0);
   const [infoTooltipMessage, setInfoTooltipMessage] = useState([
-    "Deposit sOHM to win! Once deposited, you will receive a corresponding amount of 33T and be entered to win until your sOHM is withdrawn.",
+    "Deposit sSGOD to win! Once deposited, you will receive a corresponding amount of 33T and be entered to win until your sSGOD is withdrawn.",
   ]);
   const isAccountLoading = useSelector(state => state.account.loading ?? true);
 
@@ -114,7 +114,7 @@ const PoolTogether = () => {
     <div id="pool-together-view">
       <PoolPrize />
 
-      <Paper className="ohm-card">
+      <Paper className="sgod-card">
         <Box display="flex">
           <CardHeader title="3, 3 Together" />
           <InfoTooltipMulti messagesArray={infoTooltipMessage} />

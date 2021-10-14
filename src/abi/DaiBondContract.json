@@ -2,12 +2,12 @@
   "abi": [
     {
       "inputs": [
-        { "internalType": "address", "name": "DAI_", "type": "address" },
-        { "internalType": "address", "name": "OHM_", "type": "address" },
+        { "internalType": "address", "name": "USDC_", "type": "address" },
+        { "internalType": "address", "name": "SGOD_", "type": "address" },
         { "internalType": "address", "name": "treasury_", "type": "address" },
         { "internalType": "address", "name": "stakingContract_", "type": "address" },
         { "internalType": "address", "name": "DAOWallet_", "type": "address" },
-        { "internalType": "address", "name": "circulatingOHMContract_", "type": "address" }
+        { "internalType": "address", "name": "circulatingSGODContract_", "type": "address" }
       ],
       "stateMutability": "nonpayable",
       "type": "constructor"
@@ -23,7 +23,7 @@
     },
     {
       "inputs": [],
-      "name": "DAI",
+      "name": "USDC",
       "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
       "stateMutability": "view",
       "type": "function"
@@ -44,7 +44,7 @@
     },
     {
       "inputs": [],
-      "name": "OHM",
+      "name": "SGOD",
       "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
       "stateMutability": "view",
       "type": "function"
@@ -86,7 +86,7 @@
     },
     {
       "inputs": [],
-      "name": "circulatingOHMContract",
+      "name": "circulatingSGODContract",
       "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
       "stateMutability": "view",
       "type": "function"

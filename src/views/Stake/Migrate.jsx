@@ -27,7 +27,7 @@ import { useWeb3Context } from "src/hooks/web3Context";
 import { isPendingTxn, txnButtonText } from "src/slices/PendingTxnsSlice";
 import { error } from "../../slices/MessagesSlice";
 
-// this will need to know the users ohmBalance, stakedSOHM, and stakedWSOHM
+// this will need to know the users ohmBalance, stakedSSGOD, and stakedWSSGOD
 
 export default function Migrate() {
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ export default function Migrate() {
   const [quantity, setQuantity] = useState();
 
   const ohmBalance = useSelector(state => {
-    return state.account.balances && state.account.balances.ohm;
+    return state.account.balances && state.account.balances.sgod;
   });
   const oldSohmBalance = useSelector(state => {
     return state.account.balances && state.account.balances.oldsohm;
@@ -114,7 +114,7 @@ export default function Migrate() {
 
   const hasAllowance = useCallback(
     token => {
-      if (token === "ohm") return stakeAllowance > 0;
+      if (token === "sgod") return stakeAllowance > 0;
       if (token === "sohm") return unstakeAllowance > 0;
       return false;
     },
@@ -180,12 +180,12 @@ export default function Migrate() {
   return (
     <Grid container id="sohm-migration-view">
       <Backdrop open={true}>
-        <Paper className="ohm-card ohm-modal">
+        <Paper className="sgod-card sgod-modal">
           <div className="card-header">
             <Link component={NavLink} to="/stake" className="cancel-migrate">
               <SvgIcon component={XIcon} />
             </Link>
-            <Typography variant="h3">sOHM Migration</Typography>
+            <Typography variant="h3">sSGOD Migration</Typography>
           </div>
 
           {!address ? (
@@ -202,19 +202,19 @@ export default function Migrate() {
               <div className="stake-migration-help">
                 {view === "unstake" && (
                   <Typography>
-                    Hey Ohmie, Olympus is updating the staking contract. So in order to continue earning those juicy
-                    rewards you'll need to unstake your sOHM from the old contract and restake it to the new sOHM
+                    Hey Ohmie, Squid God is updating the staking contract. So in order to continue earning those juicy
+                    rewards you'll need to unstake your sSGOD from the old contract and restake it to the new sSGOD
                     contract.
                   </Typography>
                 )}
 
                 {view === "stake" && (
                   <Typography>
-                    Youre almost done, all thats left now is to Stake your OHM to the new contract.
+                    Youre almost done, all thats left now is to Stake your SGOD to the new contract.
                   </Typography>
                 )}
 
-                {view === "done" && <Typography>Youre good to go, all OHM is staked to the new contract.</Typography>}
+                {view === "done" && <Typography>Youre good to go, all SGOD is staked to the new contract.</Typography>}
               </div>
 
               <Breadcrumbs className={`migration-breadcrumbs`} separator={<DoubleArrowIcon fontSize="medium" />}>
@@ -225,7 +225,7 @@ export default function Migrate() {
                   }}
                   className={`breadcrumb ${currentStep === "1" ? "current-step" : "finished-step"}`}
                 >
-                  Step 1: Unstake sOHM (old)
+                  Step 1: Unstake sSGOD (old)
                 </div>
                 <div
                   role="button"
@@ -236,14 +236,14 @@ export default function Migrate() {
                     currentStep === "3" && "finished-step"
                   }`}
                 >
-                  Step 2: Stake sOHM (new)
+                  Step 2: Stake sSGOD (new)
                 </div>
               </Breadcrumbs>
 
               {view !== "done" ? (
                 <>
                   <Box display="flex" className="stake-action-row">
-                    <FormControl className="ohm-input" variant="outlined" color="primary" fullWidth>
+                    <FormControl className="sgod-input" variant="outlined" color="primary" fullWidth>
                       <InputLabel htmlFor="migrate-input"></InputLabel>
                       <OutlinedInput
                         id="migrate-input"
@@ -255,9 +255,9 @@ export default function Migrate() {
                         startAdornment={
                           <InputAdornment position="start">
                             <div className="logo-holder">
-                              <div className="ohm-logo-bg">
+                              <div className="sgod-logo-bg">
                                 <img
-                                  className="ohm-logo-tiny"
+                                  className="sgod-logo-tiny"
                                   src="https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0x383518188C0C6d7730D91b2c03a03C837814a899/logo.png"
                                 />
                               </div>
@@ -286,11 +286,11 @@ export default function Migrate() {
                           setView("stake");
                         }}
                       >
-                        {txnButtonText(pendingTransactions, "migrate_unstaking", "Unstake sOHM (legacy)")}
+                        {txnButtonText(pendingTransactions, "migrate_unstaking", "Unstake sSGOD (legacy)")}
                       </Button>
                     )}
 
-                    {address && hasAllowance("ohm") && view === "stake" && (
+                    {address && hasAllowance("sgod") && view === "stake" && (
                       <Button
                         variant="contained"
                         color="primary"
@@ -301,7 +301,7 @@ export default function Migrate() {
                           setView("done");
                         }}
                       >
-                        {txnButtonText(pendingTransactions, "migrate_staking", "Stake OHM (new)")}
+                        {txnButtonText(pendingTransactions, "migrate_staking", "Stake SGOD (new)")}
                       </Button>
                     )}
 
@@ -318,7 +318,7 @@ export default function Migrate() {
                       </Button>
                     )}
 
-                    {address && !hasAllowance("ohm") && view === "stake" && (
+                    {address && !hasAllowance("sgod") && view === "stake" && (
                       <Button
                         variant="contained"
                         color="primary"
@@ -333,7 +333,8 @@ export default function Migrate() {
 
                   <div className="stake-notification">
                     {address &&
-                      ((!hasAllowance("ohm") && view === "stake") || (!hasAllowance("sohm") && view === "unstake")) && (
+                      ((!hasAllowance("sgod") && view === "stake") ||
+                        (!hasAllowance("sohm") && view === "unstake")) && (
                         <em>
                           <Typography>
                             "Approve" transaction is only needed when staking/unstaking for the first time; subsequent
@@ -350,11 +351,11 @@ export default function Migrate() {
               <Box className={`stake-user-data`}>
                 <div className="data-row">
                   <Typography>Ohm Balance</Typography>
-                  <Typography>{trim(ohmBalance)} OHM</Typography>
+                  <Typography>{trim(ohmBalance)} SGOD</Typography>
                 </div>
                 <div className="data-row">
                   <Typography>Staked (new)</Typography>
-                  <Typography>{trim(sohmBalance, 4)} sOHM</Typography>
+                  <Typography>{trim(sohmBalance, 4)} sSGOD</Typography>
                 </div>
 
                 <div className="data-row">
@@ -364,7 +365,7 @@ export default function Migrate() {
 
                 <div className="data-row">
                   <Typography>Staked (legacy)</Typography>
-                  <Typography>{trim(oldSohmBalance, 4)} sOHM</Typography>
+                  <Typography>{trim(oldSohmBalance, 4)} sSGOD</Typography>
                 </div>
 
                 <div className="data-row">

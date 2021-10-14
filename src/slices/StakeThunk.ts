@@ -35,11 +35,11 @@ export const changeApproval = createAsyncThunk(
     }
 
     const signer = provider.getSigner();
-    const ohmContract = new ethers.Contract(addresses[networkID].OHM_ADDRESS as string, ierc20Abi, signer);
-    const sohmContract = new ethers.Contract(addresses[networkID].SOHM_ADDRESS as string, ierc20Abi, signer);
+    const ohmContract = new ethers.Contract(addresses[networkID].SGOD_ADDRESS as string, ierc20Abi, signer);
+    const sohmContract = new ethers.Contract(addresses[networkID].SSGOD_ADDRESS as string, ierc20Abi, signer);
     let approveTx;
     try {
-      if (token === "ohm") {
+      if (token === "sgod") {
         approveTx = await ohmContract.approve(
           addresses[networkID].STAKING_HELPER_ADDRESS,
           ethers.utils.parseUnits("1000000000", "gwei").toString(),
@@ -50,8 +50,8 @@ export const changeApproval = createAsyncThunk(
           ethers.utils.parseUnits("1000000000", "gwei").toString(),
         );
       }
-      const text = "Approve " + (token === "ohm" ? "Staking" : "Unstaking");
-      const pendingTxnType = token === "ohm" ? "approve_staking" : "approve_unstaking";
+      const text = "Approve " + (token === "sgod" ? "Staking" : "Unstaking");
+      const pendingTxnType = token === "sgod" ? "approve_staking" : "approve_unstaking";
       dispatch(fetchPendingTxns({ txnHash: approveTx.hash, text, type: pendingTxnType }));
 
       await approveTx.wait();

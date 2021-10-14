@@ -9,16 +9,16 @@ import { useEffect, useState } from "react";
 /*
   ~ What it does? ~
 
-  Enables you to load an existing mainnet DAI contract using the provider, address and abi
+  Enables you to load an existing mainnet USDC contract using the provider, address and abi
 
   ~ How can I use? ~
 
-  const mainnetDAIContract = useExternalContractLoader(mainnetProvider, DAI_ADDRESS, DAI_ABI)
+  const mainnetUSDCContract = useExternalContractLoader(mainnetProvider, USDC_ADDRESS, USDC_ABI)
 
   ~ Features ~
 
   - Specify mainnetProvider
-  - Specify DAI_ADDRESS and DAI_ABI, you can load/write them using constants.js
+  - Specify USDC_ADDRESS and USDC_ABI, you can load/write them using constants.js
 */
 export default function useExternalContractLoader(provider, address, ABI, optionalBytecode) {
   const [contract, setContract] = useState();

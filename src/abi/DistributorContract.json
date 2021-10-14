@@ -3,14 +3,14 @@
     { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" },
     {
       "inputs": [],
-      "name": "DAI",
+      "name": "USDC",
       "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
       "stateMutability": "view",
       "type": "function"
     },
     {
       "inputs": [],
-      "name": "OHM",
+      "name": "SGOD",
       "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
       "stateMutability": "view",
       "type": "function"
@@ -43,8 +43,8 @@
         { "internalType": "uint256", "name": "_rewardRate", "type": "uint256" },
         { "internalType": "address", "name": "_vault", "type": "address" },
         { "internalType": "address", "name": "_stakingContract", "type": "address" },
-        { "internalType": "address", "name": "_OHM", "type": "address" },
-        { "internalType": "address", "name": "_DAI", "type": "address" }
+        { "internalType": "address", "name": "_SGOD", "type": "address" },
+        { "internalType": "address", "name": "_USDC", "type": "address" }
       ],
       "name": "initialize",
       "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
@@ -67,7 +67,7 @@
     },
     {
       "inputs": [],
-      "name": "notEnoughDAIToDistribute",
+      "name": "notEnoughUSDCToDistribute",
       "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "view",
       "type": "function"
@@ -116,7 +116,7 @@
     },
     {
       "inputs": [],
-      "name": "transferRemainingDAIOutIfNotEnough",
+      "name": "transferRemainingUSDCOutIfNotEnough",
       "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
       "stateMutability": "nonpayable",
       "type": "function"

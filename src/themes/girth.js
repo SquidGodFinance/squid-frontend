@@ -66,7 +66,7 @@ export const girth = responsiveFontSizes(
           },
         },
         MuiPaper: {
-          "&.ohm-modal": {
+          "&.sgod-modal": {
             backgroundColor: girthTheme.modalBg,
           },
         },

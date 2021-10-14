@@ -5,17 +5,17 @@ import { abi as PairContract } from "../abi/PairContract.json";
 import { abi as RedeemHelperAbi } from "../abi/RedeemHelper.json";
 
 import { SvgIcon } from "@material-ui/core";
-import { ReactComponent as OhmImg } from "../assets/tokens/token_OHM.svg";
-import { ReactComponent as SOhmImg } from "../assets/tokens/token_sOHM.svg";
+import { ReactComponent as OhmImg } from "../assets/tokens/token_SGOD.svg";
+import { ReactComponent as SOhmImg } from "../assets/tokens/token_sSGOD.svg";
 
-import { ohm_dai } from "./AllBonds";
+import { sgod_usdc } from "./AllBonds";
 import { JsonRpcSigner, StaticJsonRpcProvider } from "@ethersproject/providers";
 import { NodeHelper } from "./NodeHelper";
 
-// NOTE (appleseed): using ohm-dai as it's the most liquid pool
+// NOTE (appleseed): using sgod-usdc as it's the most liquid pool
 export async function getMarketPrice({ networkID, provider }: { networkID: number; provider: StaticJsonRpcProvider }) {
-  const ohm_dai_address = ohm_dai.getAddressForReserve(networkID);
-  const pairContract = new ethers.Contract(ohm_dai_address, PairContract, provider);
+  const sgod_usdc_address = sgod_usdc.getAddressForReserve(networkID);
+  const pairContract = new ethers.Contract(sgod_usdc_address, PairContract, provider);
   let reserves;
   try {
     reserves = await pairContract.getReserves();
@@ -119,7 +119,7 @@ export function getOhmTokenImage(w?: number, h?: number) {
 }
 
 export function getTokenImage(name: string) {
-  if (name === "ohm") return getOhmTokenImage();
+  if (name === "sgod") return getOhmTokenImage();
   if (name === "sohm") return getSohmTokenImage();
 }
 

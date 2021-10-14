@@ -2,8 +2,8 @@ import { ethers } from "ethers";
 import { addresses } from "../constants";
 import { abi as OlympusStaking } from "../abi/OlympusStaking.json";
 import { abi as OlympusStakingv2 } from "../abi/OlympusStakingv2.json";
-import { abi as sOHM } from "../abi/sOHM.json";
-import { abi as sOHMv2 } from "../abi/sOhmv2.json";
+import { abi as sSGOD } from "../abi/sSGOD.json";
+import { abi as sSGODv2 } from "../abi/sOhmv2.json";
 import { setAll, getTokenPrice, getMarketPrice } from "../helpers";
 import { NodeHelper } from "../helpers/NodeHelper";
 import apollo from "../lib/apolloClient.js";
@@ -95,8 +95,8 @@ export const loadAppDetails = createAsyncThunk(
       OlympusStaking,
       provider,
     );
-    const sohmMainContract = new ethers.Contract(addresses[networkID].SOHM_ADDRESS as string, sOHMv2, provider);
-    const sohmOldContract = new ethers.Contract(addresses[networkID].OLD_SOHM_ADDRESS as string, sOHM, provider);
+    const sohmMainContract = new ethers.Contract(addresses[networkID].SSGOD_ADDRESS as string, sSGODv2, provider);
+    const sohmOldContract = new ethers.Contract(addresses[networkID].OLD_SSGOD_ADDRESS as string, sSGOD, provider);
 
     // Calculating staking
     const epoch = await stakingContract.epoch();
@@ -172,8 +172,8 @@ export const findOrLoadMarketPrice = createAsyncThunk(
 );
 
 /**
- * - fetches the OHM price from CoinGecko (via getTokenPrice)
- * - falls back to fetch marketPrice from ohm-dai contract
+ * - fetches the SGOD price from CoinGecko (via getTokenPrice)
+ * - falls back to fetch marketPrice from sgod-usdc contract
  * - updates the App.slice when it runs
  */
 const loadMarketPrice = createAsyncThunk(

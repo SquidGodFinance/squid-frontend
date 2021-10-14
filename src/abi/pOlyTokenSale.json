@@ -69,7 +69,7 @@
     },
     {
       "inputs": [],
-      "name": "dai",
+      "name": "usdc",
       "outputs": [{ "internalType": "contract IERC20", "name": "", "type": "address" }],
       "stateMutability": "view",
       "type": "function"

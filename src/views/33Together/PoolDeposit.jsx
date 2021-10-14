@@ -85,7 +85,7 @@ export const PoolDeposit = props => {
 
   useEffect(() => {
     props.setInfoTooltipMessage([
-      "Deposit sOHM to win! Once deposited, you will receive a corresponding amount of 33T and be entered to win until your sOHM is withdrawn.",
+      "Deposit sSGOD to win! Once deposited, you will receive a corresponding amount of 33T and be entered to win until your sSGOD is withdrawn.",
     ]);
   }, []);
 
@@ -111,7 +111,7 @@ export const PoolDeposit = props => {
       ) : (
         <Box className="deposit-container">
           <Box display="flex" alignItems="center" flexDirection={`${isMobileScreen ? "column" : "row"}`}>
-            <FormControl className="ohm-input" variant="outlined" color="primary">
+            <FormControl className="sgod-input" variant="outlined" color="primary">
               <InputLabel htmlFor="amount-input"></InputLabel>
               <OutlinedInput
                 id="amount-input"
@@ -145,7 +145,7 @@ export const PoolDeposit = props => {
                 onClick={() => onDeposit("deposit")}
                 fullWidth
               >
-                {txnButtonText(pendingTransactions, "deposit", "Deposit sOHM")}
+                {txnButtonText(pendingTransactions, "deposit", "Deposit sSGOD")}
               </Button>
             ) : (
               <Button
@@ -162,11 +162,11 @@ export const PoolDeposit = props => {
           {newOdds > 0 && quantity > 0 && (
             <Box padding={1}>
               <Typography variant="body2" style={{ color: "#33BB33" }}>
-                Depositing {quantity} sOHM will increase odds of winning to 1 in {newOdds}&nbsp;
+                Depositing {quantity} sSGOD will increase odds of winning to 1 in {newOdds}&nbsp;
               </Typography>
             </Box>
           )}
-          {/* NOTE (Appleseed): added this bc I kept losing track of which accounts I had sOHM in during testing */}
+          {/* NOTE (Appleseed): added this bc I kept losing track of which accounts I had sSGOD in during testing */}
           <div className={`stake-user-data`}>
             <div className="data-row">
               <Typography variant="body1" align="left">
@@ -176,7 +176,7 @@ export const PoolDeposit = props => {
                 {isAppLoading ? (
                   <Skeleton width="80px" />
                 ) : (
-                  <>{new Intl.NumberFormat("en-US").format(sohmBalance)} sOHM</>
+                  <>{new Intl.NumberFormat("en-US").format(sohmBalance)} sSGOD</>
                 )}
               </Typography>
             </div>
