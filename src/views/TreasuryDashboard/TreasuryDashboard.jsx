@@ -202,7 +202,7 @@ function TreasuryDashboard() {
                   data={data}
                   dataKey={["treasuryOhmDaiPOL"]}
                   stopColor={[["rgba(128, 204, 131, 1)", "rgba(128, 204, 131, 0)"]]}
-                  headerText="Protocol Owned Liquidity SGOD-USDC"
+                  headerText="Protocol Owned Liquidity SGOD-BUSD"
                   headerSubText={`${data && trim(data[0].treasuryOhmDaiPOL, 2)}% `}
                   dataFormat="percent"
                   bulletpointColors={bulletpoints.pol}

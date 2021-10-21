@@ -15,11 +15,11 @@ const externalUrls = [
   //   url: "https://vote.olympusdao.finance/",
   //   icon: <SvgIcon color="primary" component={GovIcon} />,
   // },
-  {
-    title: "Docs",
-    url: "https://docs.olympusdao.finance/",
-    icon: <SvgIcon color="primary" component={DocsIcon} />,
-  },
+  // {
+  //   title: "Docs",
+  //   url: "https://docs.olympusdao.finance/",
+  //   icon: <SvgIcon color="primary" component={DocsIcon} />,
+  // },
   // {
   //   title: "Feedback",
   //   url: "https://olympusdao.canny.io/",

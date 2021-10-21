@@ -23,7 +23,7 @@
     },
     {
       "inputs": [],
-      "name": "USDC",
+      "name": "BUSD",
       "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
       "stateMutability": "view",
       "type": "function"

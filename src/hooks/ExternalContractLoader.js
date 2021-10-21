@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 /*
   ~ What it does? ~
 
-  Enables you to load an existing mainnet USDC contract using the provider, address and abi
+  Enables you to load an existing mainnet BUSD contract using the provider, address and abi
 
   ~ How can I use? ~
 

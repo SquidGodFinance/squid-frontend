@@ -121,7 +121,7 @@ export const calcBondDetails = createAsyncThunk(
         bondQuote = bondQuote / Math.pow(10, 9);
       }
     } else {
-      // RFV = USDC
+      // RFV = BUSD
       bondQuote = await bondContract.payoutFor(amountInWei);
 
       if (!amountInWei.isZero() && bondQuote < 100000000000000) {

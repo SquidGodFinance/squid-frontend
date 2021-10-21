@@ -137,7 +137,7 @@ export const bulletpoints = {
 
 export const tooltipItems = {
   tvl: ["Total Value Deposited"],
-  coin: ["USDC", "USDT", "ETH", "SUSHI"],
+  coin: ["BUSD", "USDT"],
   holder: ["SGODies"],
   apy: ["APY"],
   runway: ["Days"],

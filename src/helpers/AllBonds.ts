@@ -1,8 +1,8 @@
 import { StableBond, LPBond, NetworkID, CustomBond } from "src/lib/Bond";
 import { addresses } from "src/constants";
 
-import { ReactComponent as DaiImg } from "src/assets/tokens/USDC.svg";
-import { ReactComponent as OhmDaiImg } from "src/assets/tokens/SGOD-USDC.svg";
+import { ReactComponent as DaiImg } from "src/assets/tokens/BUSD.svg";
+import { ReactComponent as OhmDaiImg } from "src/assets/tokens/SGOD-BUSD.svg";
 import { ReactComponent as FraxImg } from "src/assets/tokens/USDT.svg";
 import { ReactComponent as OhmFraxImg } from "src/assets/tokens/SGOD-USDT.svg";
 import { ReactComponent as OhmLusdImg } from "src/assets/tokens/SGOD-LUSD.svg";
@@ -24,8 +24,8 @@ import { abi as EthBondContract } from "src/abi/bonds/EthContract.json";
 //   and include that in the definition of a bond
 export const usdc = new StableBond({
   name: "usdc",
-  displayName: "USDC",
-  bondToken: "USDC",
+  displayName: "BUSD",
+  bondToken: "BUSD",
   bondIconSvg: DaiImg,
   bondContractABI: DaiBondContract,
   networkAddrs: {
@@ -105,8 +105,8 @@ export const eth = new CustomBond({
 
 export const sgod_usdc = new LPBond({
   name: "sgod_usdc_lp",
-  displayName: "SGOD-USDC LP",
-  bondToken: "USDC",
+  displayName: "SGOD-BUSD LP",
+  bondToken: "BUSD",
   bondIconSvg: OhmDaiImg,
   bondContractABI: BondOhmDaiContract,
   reserveContract: ReserveOhmDaiContract,

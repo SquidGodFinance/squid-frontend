@@ -162,7 +162,7 @@ export const Web3ContextProvider: React.FC<{ children: ReactElement }> = ({ chil
     }
     const validNetwork = _checkNetwork(chainId);
     if (!validNetwork) {
-      console.error("Wrong network, please switch to mainnet");
+      console.error("Wrong network, please switch to Moonriver");
       return;
     }
     // Save everything after we've validated the right network.

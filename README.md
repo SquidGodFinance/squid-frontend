@@ -1,7 +1,7 @@
 # [Ω Squid God Frontend](https://www.squidgod.finance/)
 This is the front-end repo for Squid God that allows users be part of the future of Greece. 
 
-**_ Note We're currently in the process of switching to TypeScript. Please read  this  guide on how to use TypeScript for this repository. https://github.com/OlympusDAO/olympus-frontend/wiki/TypeScript-Refactor-General-Guidelines _**
+**_ Note We're currently in the process of switching to TypeScript. Please read  this  guide on how to use TypeScript for this repository. https://github.com/SquidGodFinance/squid-god-frontend/wiki/TypeScript-Refactor-General-Guidelines _**
 
 ##  🔧 Setting up Local Development
 
@@ -34,7 +34,7 @@ Open the source code and start editing!
 
 Note: The faucet is limited to one transfer per wallet every 6500 blocks (~1 day)
 
-**Rinkeby faucets for LUSD, USDT & USDC can be taken from rinkeby etherscan:**
+**Rinkeby faucets for LUSD, USDT & BUSD can be taken from rinkeby etherscan:**
 
 1. Go to `src/helpers/AllBonds.ts`
 2. then copy the rinkeby `reserveAddress` for the applicable bond & navigate to that contract on rinkeby etherscan. 

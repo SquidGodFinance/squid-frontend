@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>BUSD</title>
+    <g id="1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="BUSD" fill-rule="nonzero">
+            <g id="shape">
+                <circle fill="#0B0E11" cx="16" cy="16" r="16"></circle>
+                <polygon stroke="#F0B90B" stroke-width="0.5" fill="#F0B90B" points="16 6 18.4776119 8.5297619 12.238806 14.75 9.76119403 12.2797619"></polygon>
+                <polygon stroke="#F0B90B" stroke-width="0.5" fill="#F0B90B" points="19.761194 9.75 22.238806 12.2797619 12.238806 22.25 9.76119403 19.7797619"></polygon>
+                <polygon stroke="#F0B90B" stroke-width="0.5" fill="#F0B90B" points="8.47761194 13.5 10.9552239 16.0297619 8.47761194 18.5 6 16.0297619"></polygon>
+                <polygon stroke="#F0B90B" stroke-width="0.5" fill="#F0B90B" points="23.5223881 13.5 26 16.0297619 16 26 13.5223881 23.5297619"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

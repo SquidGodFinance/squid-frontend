@@ -10,13 +10,13 @@ export default function useExchangePrice(targetNetwork, mainnetProvider, pollTim
       if (targetNetwork.price) {
         setPrice(targetNetwork.price);
       } else {
-        const USDC = new Token(
+        const BUSD = new Token(
           mainnetProvider.network ? mainnetProvider.network.chainId : 1,
           "0x6B175474E89094C44Da98b954EedeAC495271d0F",
           18,
         );
-        const pair = await Fetcher.fetchPairData(USDC, WETH[USDC.chainId], mainnetProvider);
-        const route = new Route([pair], WETH[USDC.chainId]);
+        const pair = await Fetcher.fetchPairData(BUSD, WETH[BUSD.chainId], mainnetProvider);
+        const route = new Route([pair], WETH[BUSD.chainId]);
         setPrice(parseFloat(route.midPrice.toSignificant(6)));
       }
     }
