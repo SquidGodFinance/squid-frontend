@@ -12,7 +12,7 @@ export const calcAludelDetes = async (networkID: NetworkID, provider: StaticJson
   const aludelContract = new ethers.Contract(crucibleAddress as string, OhmLusdCrucible, provider);
   const aludelData = await aludelContract.getAludelData();
   // getting contractAddresses & Pricing for calculations below
-  let ohmPrice = await getTokenPrice("olympus");
+  let ohmPrice = await getTokenPrice("squidgod");
   let ohmContractAddress = addresses[networkID].SGOD_ADDRESS.toLowerCase();
 
   let lusdPrice = await getTokenPrice("liquity-usd");

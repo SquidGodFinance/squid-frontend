@@ -1,9 +1,9 @@
 import { StableBond, LPBond, NetworkID, CustomBond } from "src/lib/Bond";
 import { addresses } from "src/constants";
 
-import { ReactComponent as DaiImg } from "src/assets/tokens/BUSD.svg";
+import { ReactComponent as BusdImg } from "src/assets/tokens/BUSD.svg";
 import { ReactComponent as OhmDaiImg } from "src/assets/tokens/SGOD-BUSD.svg";
-import { ReactComponent as FraxImg } from "src/assets/tokens/USDT.svg";
+import { ReactComponent as UsdtImg } from "src/assets/tokens/USDT.svg";
 import { ReactComponent as OhmFraxImg } from "src/assets/tokens/SGOD-USDT.svg";
 import { ReactComponent as OhmLusdImg } from "src/assets/tokens/SGOD-LUSD.svg";
 import { ReactComponent as wETHImg } from "src/assets/tokens/wETH.svg";
@@ -23,10 +23,10 @@ import { abi as EthBondContract } from "src/abi/bonds/EthContract.json";
 // TODO(zx): Further modularize by splitting up reserveAssets into vendor token definitions
 //   and include that in the definition of a bond
 export const usdc = new StableBond({
-  name: "usdc",
+  name: "busd",
   displayName: "BUSD",
   bondToken: "BUSD",
-  bondIconSvg: DaiImg,
+  bondIconSvg: BusdImg,
   bondContractABI: DaiBondContract,
   networkAddrs: {
     [NetworkID.Mainnet]: {
@@ -34,7 +34,7 @@ export const usdc = new StableBond({
       reserveAddress: "0x6b175474e89094c44da98b954eedeac495271d0f",
     },
     [NetworkID.Testnet]: {
-      bondAddress: "0xDea5668E815dAF058e3ecB30F645b04ad26374Cf",
+      bondAddress: "0x52d49870b7349e0a17dB0084A10ABa1FF1464ae5",
       reserveAddress: "0xB2180448f8945C8Cc8AE9809E67D6bd27d8B2f2C",
     },
   },
@@ -44,7 +44,7 @@ export const usdt = new StableBond({
   name: "usdt",
   displayName: "USDT",
   bondToken: "USDT",
-  bondIconSvg: FraxImg,
+  bondIconSvg: UsdtImg,
   bondContractABI: FraxBondContract,
   networkAddrs: {
     [NetworkID.Mainnet]: {
@@ -52,7 +52,7 @@ export const usdt = new StableBond({
       reserveAddress: "0x853d955acef822db058eb8505911ed77f175b99e",
     },
     [NetworkID.Testnet]: {
-      bondAddress: "0xF651283543fB9D61A91f318b78385d187D300738",
+      bondAddress: "0x8839a75AE1Ae70eAA13a12eC938b7cfbe7D96a0a",
       reserveAddress: "0x2F7249cb599139e560f0c81c269Ab9b04799E453",
     },
   },

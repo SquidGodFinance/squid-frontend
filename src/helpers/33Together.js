@@ -63,7 +63,7 @@ export const secondsToDaysForInput = seconds => {
 export const poolTogetherUILinks = chainID => {
   const contractAddress = addresses[chainID].PT_PRIZE_POOL_ADDRESS;
 
-  if (chainID === 4) {
+  if (chainID === 999) {
     return [
       `https://community.pooltogether.com/pools/rinkeby/${contractAddress}/home`,
       `https://community.pooltogether.com/pools/rinkeby/${contractAddress}/manage#stats`,

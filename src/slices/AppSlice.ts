@@ -184,7 +184,7 @@ const loadMarketPrice = createAsyncThunk(
       marketPrice = await getMarketPrice({ networkID, provider });
       marketPrice = marketPrice / Math.pow(10, 9);
     } catch (e) {
-      marketPrice = await getTokenPrice("olympus");
+      marketPrice = await getTokenPrice("squidgod");
     }
     return { marketPrice };
   },

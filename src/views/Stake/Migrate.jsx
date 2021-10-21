@@ -75,7 +75,7 @@ export default function Migrate() {
   const getStakeApproval = async () => {
     const dispatchObj = getApproval({
       type: TYPES.NEW,
-      networkID: 1,
+      networkID: 888,
       provider,
       address,
     });
@@ -85,7 +85,7 @@ export default function Migrate() {
   const getUnstakeLegacyApproval = async () => {
     const dispatchObj = getApproval({
       type: TYPES.OLD,
-      networkID: 1,
+      networkID: 888,
       provider,
       address,
     });
@@ -99,7 +99,7 @@ export default function Migrate() {
     }
 
     await dispatch(
-      changeStake({ action: ACTIONS.UNSTAKE, address, value: quantity.toString(), provider, networkID: 1 }),
+      changeStake({ action: ACTIONS.UNSTAKE, address, value: quantity.toString(), provider, networkID: 888 }),
     );
   };
 
@@ -109,7 +109,9 @@ export default function Migrate() {
       return;
     }
 
-    await dispatch(changeStake({ action: ACTIONS.STAKE, address, value: quantity.toString(), provider, networkID: 1 }));
+    await dispatch(
+      changeStake({ action: ACTIONS.STAKE, address, value: quantity.toString(), provider, networkID: 888 }),
+    );
   };
 
   const hasAllowance = useCallback(

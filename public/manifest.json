@@ -1,8 +1,8 @@
 {
-  "short_name": "OlympusDAO",
+  "short_name": "squid-god-frontend",
   "start_url": ".",
   "homepage": "./",
-  "name": "OlympusDAO",
+  "name": "squid-god-frontend",
   "launch_path": "/public/index.html",
   "icons": [
     {

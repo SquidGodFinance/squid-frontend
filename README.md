@@ -12,8 +12,8 @@ Required:
 
 
 ```bash
-$ git clone https://github.com/OlympusDAO/olympusdao.git
-$ cd olympusdao
+$ git clone https://github.com/SquidGodFinance/squid-god-frontend.git
+$ cd squid-god-frontend
 
 # set up your environment variables
 # read the comments in the .env files for what is required/optional

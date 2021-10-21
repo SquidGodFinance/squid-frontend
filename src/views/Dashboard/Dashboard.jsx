@@ -23,7 +23,7 @@ function Dashboard() {
   return (
     <div id="dashboard-view">
       <Grid container spacing={1} className="top-row-data">
-        <Grid item lg={4} md={4} sm={3} xs={5} className="olympus-card">
+        <Grid item lg={4} md={4} sm={3} xs={5} className="squidgod-card">
           <Zoom in={true}>
             <Paper className="sgod-card">
               <Typography variant="h6">Price</Typography>

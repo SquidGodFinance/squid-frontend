@@ -11,7 +11,7 @@ export default function useExchangePrice(targetNetwork, mainnetProvider, pollTim
         setPrice(targetNetwork.price);
       } else {
         const BUSD = new Token(
-          mainnetProvider.network ? mainnetProvider.network.chainId : 1,
+          mainnetProvider.network ? mainnetProvider.network.chainId : 888,
           "0x6B175474E89094C44Da98b954EedeAC495271d0F",
           18,
         );
